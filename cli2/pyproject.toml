@@ -1,0 +1,26 @@
+[project]
+name = "cli2"
+version = "0.1.0"
+description = "cli2 using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.157.0,<1.0.0"
+]
+
+[project.scripts]
+cli2 = "cli2.main:run"
+run_crew = "cli2.main:run"
+train = "cli2.main:train"
+replay = "cli2.main:replay"
+test = "cli2.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.crewai.tools]
+file_saver = "cli2.tools.custom_tool.FileSaverTool"

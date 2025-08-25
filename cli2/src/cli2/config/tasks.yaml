@@ -1,0 +1,32 @@
+suggest_destinations:
+  description: >
+    Based on the user's preferred region '{region}' and trip type '{trip_type}',
+    suggest 2-3 specific destinations that are a great fit. Provide a brief
+    reason for each suggestion.
+  expected_output: >
+    A short list of 2-3 destination suggestions with a brief justification for each,
+    tailored to the user's preferences.
+  agent: destination_expert
+
+plan_itinerary:
+  description: >
+    Take the top destination suggestion and create a detailed 5-day, day-by-day itinerary.
+    For each day, include suggestions for activities, food options, and cultural experiences.
+  expected_output: >
+    A full 5-day itinerary for the chosen destination, with specific, actionable suggestions
+    for each day.
+  agent: itinerary_planner
+  context:
+    - suggest_destinations
+
+estimate_budget:
+  description: >
+    Analyze the complete 5-day itinerary and create a detailed budget estimate.
+    Provide a breakdown of costs for accommodation, food, transport, and activities.
+    Combine the itinerary and the budget into a final travel plan.
+  expected_output: >
+    A comprehensive travel plan document that includes the full 5-day itinerary
+    followed by a detailed budget breakdown with estimated costs.
+  agent: budget_advisor
+  context:
+    - plan_itinerary
